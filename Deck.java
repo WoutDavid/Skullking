@@ -31,7 +31,7 @@ public class Deck {
 			cards[randomIndexToSwap] = cards[i];
 			cards[i] = temp;
         }
-        this.size = 66;
+        this.size = cards.length;
     }
 
     public Card[] getcards() {
@@ -39,8 +39,7 @@ public class Deck {
     }
 
     public void setcards(Card[] cards) {
-        this.cards = cards;
-        System.out.println("cards length = " + cards.length);
+        this.cards = cards;;
     }
 
     // public void removeCard(int location){
@@ -56,7 +55,7 @@ public class Deck {
     //     }
     // }
     public int getSize() {
-        return size;
+        return this.cards.length;
     }
 
     public void setSize(int size) {

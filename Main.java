@@ -1,7 +1,14 @@
 public class Main {
     public static void main(String[] args){
         Deck d = new Deck();
-        System.out.println(d.getDeck()[55].getClass());
+        for (int i=0; i<5; i++){
+            System.out.println(d.getcards()[0].getName());
+            System.out.println(d.getSize());
+            d.drawCard();
+            System.out.println(d.getcards()[0].getName());
+            System.out.println(d.getSize());
+        }
+
     }
 }
 
