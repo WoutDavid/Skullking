@@ -1,15 +1,16 @@
 public class Hand {
     private int number_cards;
     private Card[] cards;
-    private String owner;
+    private Player owner;
 
-    public Hand(int number_cards, String owner, Deck deck){
+    public Hand(int number_cards, Player owner, Deck deck){
         this.cards = new Card[number_cards];
         for (int i = 0; i< number_cards; i++){
             this.cards[i] = deck.drawCard();
         }
         this.number_cards = cards.length;
         this.owner = owner;
+        this.owner.setHand(this);
     }
 
     public int getNumber_cards() {
@@ -28,11 +29,11 @@ public class Hand {
         this.cards = cards;
     }
 
-    public String getOwner() {
+    public Player getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Player owner) {
         this.owner = owner;
     }
     
