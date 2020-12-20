@@ -24,11 +24,40 @@ public class Round {
     //This will be called by the GUI, when the players have chosen their cards for that rotation, which will be stored in a dictionary
     //It'll probably be easier if I extract the first card from the dictionary and then compare everything to that.
     public void playRotation(HashMap<Player, Card> playedCards){
-        Player winner;
-        
+        Player winner = null;
+        Card winning_card = null;
+        boolean first = true;  
         for (HashMap.Entry<Player, Card> entry : playedCards.entrySet()) {
-            Player player = entry.getKey();
-            Card card = entry.getValue();
+            winner = entry.getKey();
+            winning_card = entry.getValue();
+            break;
+        }
+     
+        for (HashMap.Entry<Player, Card> entry : playedCards.entrySet()) {
+            if (first) {
+                first = false;
+                continue;
+            }
+            else {
+                if (winning_card.getName().equals("number")){
+                    if (!entry.getValue().getName().equals("number")){
+                        winning_card = entry.getValue();
+                        winner = entry.getKey();
+                    }
+                    else {
+                        //if the new card is also a numeric card
+                        if (((NumericCard)entry.getValue()).getNumber() > ((NumericCard)winning_card).getNumber()){
+                            winning_card = entry.getValue();
+                            winner = entry.getKey();
+                        }
+                    }
+
+                }
+                else {
+                    
+                }
+            }
+
 
         }
 
