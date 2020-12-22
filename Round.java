@@ -1,5 +1,5 @@
 import java.util.HashMap;
-
+import java.util.Arrays;
 import java.util.HashMap;
 public class Round {
     private int number_of_players;
@@ -23,7 +23,8 @@ public class Round {
     }
     //This will be called by the GUI, when the players have chosen their cards for that rotation, which will be stored in a dictionary
     //It'll probably be easier if I extract the first card from the dictionary and then compare everything to that.
-    public void playRotation(HashMap<Player, Card> playedCards){
+    //I added a firstcolor variable to make functionality easier
+    public void playRotation(HashMap<Player, Card> playedCards, String firstColor){
         Player winner = null;
         Card winning_card = null;
         boolean first = true;  
@@ -46,19 +47,28 @@ public class Round {
                     }
                     else {
                         //if the new card is also a numeric card
-                        if (((NumericCard)entry.getValue()).getNumber() > ((NumericCard)winning_card).getNumber()){
+                        //then either one of them is black and the other isn't, or the number is bigger and it is in the "firstcolor"
+                        if ((((NumericCard)entry.getValue()).getNumber() > ((NumericCard)winning_card).getNumber() && ((NumericCard)entry.getValue()).getColor().equals(firstColor)) || (((NumericCard)entry.getValue()).getColor().equals("black") && (!(((NumericCard)winning_card).getColor().equals("black"))))){
                             winning_card = entry.getValue();
                             winner = entry.getKey();
                         }
                     }
 
                 }
+                //if the winning card isn't a numeric card
                 else {
-                    
+                    //if the entry card is a numeric card
+                    if (entry.getValue().getName().equals("number")){
+                        continue;
+                    }
+                    //if they are both personacards
+                    else{
+                        if (Arrays.asList(((PersonaCard)entry.getValue()).getTrumps()).contains(winning_card.getName())){
+                            winning_card = entry.getValue();
+                        }
+                    }
                 }
             }
-
-
         }
 
     }
