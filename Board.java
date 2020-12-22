@@ -1,12 +1,13 @@
 import java.util.Random;
 import java.util.HashMap;
 
+
+//board is the place where the gui will draw it's info from, multiple games can be played on one instance of a board
 public class Board {
     private int number_of_players;
     private Player[] players;
     private HashMap<Player, Integer> score_map;
-    private Player starter;
-    private int round_number = 1; 
+    private Player starter; 
 
     public Board(int number_of_players, Player[] players){
         //picking a starting player at random
@@ -20,8 +21,9 @@ public class Board {
         for (Player p: players){
             score_map.put(p, 0);
         }
+        //this isn't correct yet cause you changed the hierarchy of classes.
         for (int i = 0; i < 10; i++){
-            Round round = new Round(number_of_players, players, starter, round_number);
+            Game game = new Game(players, starter);
             for (Player p: players){
                 score_map.put(p, p.getScore());
             }
