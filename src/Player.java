@@ -42,5 +42,23 @@ public class Player {
     public void setCardChosen(Card cardChosen) {
         this.cardChosen = cardChosen;
     }
+
+    public int getWinsCalled() {
+        return winsCalled;
+    }
+
+    public void setWinsCalled(int winsCalled) {
+        this.winsCalled = winsCalled;
+    }
+
+    public int getWinsReceived() {
+        return winsReceived;
+    }
+
+    public void setWinsReceived(int winsReceived) {
+        this.winsReceived = winsReceived;
+    }
+
+    
     
 }

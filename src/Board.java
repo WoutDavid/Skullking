@@ -21,14 +21,7 @@ public class Board {
         for (Player p: players){
             score_map.put(p, 0);
         }
-        //this isn't correct yet cause you changed the hierarchy of classes.
-        for (int i = 0; i < 10; i++){
-            Game game = new Game(players, starter);
-            for (Player p: players){
-                score_map.put(p, p.getScore());
-            }
-            //this.updateDataOnBoard
-        }
+
     }
 
     public int getNumber_of_players() {
