@@ -1,7 +1,7 @@
 ## Skullking
 by David Wouters
 
-###Introduction
+### Introduction
 This repository contains code for my personal attempt at creating a java application that allows to play the board/cardgame "Skullking". 
 The goal is to make this a webhosted java application where multiple players can come together to play the game, each on their seperate machine.
 
