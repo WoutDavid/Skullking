@@ -1,0 +1,2 @@
+- Implement score calculation in round.java
+- Implement startround

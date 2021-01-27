@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 //This class represents one of the 10 rounds that will be played each game
 //so the card calling and score calculation is done on this level.
@@ -8,7 +9,9 @@ public class Round {
     private int round_number;
     private Player[] players;
     private Deck deck = new Deck();
-    private HashMap<Player, Integer> winsCalled = new HashMap<Player, Integer>();
+    private LinkedHashMap<Player, Integer> winsCalled = new LinkedHashMap<Player, Integer>();
+    private LinkedHashMap<Player, Integer>  winsReceived = new LinkedHashMap<Player, Integer>();
+    private boolean roundFinished = false;
 
     public Round(Player[] players, int round_number){
         //round begins, each player gets their hand
@@ -38,5 +41,13 @@ public class Round {
         return returnMap;
     }
 
+    public HashMap<Player, Integer> calculateScores() throws Exception{
+        //TODO implement this
+        if (!roundFinished){
+            throw new Exception("Exception message");
+        }
+        return new HashMap<Player, Integer>();
+
+    }
     
 }

@@ -6,7 +6,7 @@ public class Game {
     private int number_of_players;
     private Player[] players;
     private Player starter;
-    private int round_number = 1;
+    private int roundNumber = 1;
     boolean gameOver = false;
 
     public Game(Player[] players, Player starter){
