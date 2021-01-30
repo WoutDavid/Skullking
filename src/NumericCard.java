@@ -31,5 +31,11 @@ public class NumericCard extends Card{
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "NumericCard [color=" + color + ", number=" + number + "]";
+    }
+    
     
 }

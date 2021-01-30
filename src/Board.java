@@ -1,20 +1,13 @@
-import java.util.Random;
 import java.util.HashMap;
-
-
 //board is the place where the gui will draw it's info from, multiple games can be played on one instance of a board
 public class Board {
     private int number_of_players;
     private Player[] players;
-    private HashMap<Player, Integer> score_map;
+    private HashMap<Player, Integer> score_map = new HashMap<Player,Integer>();
+
     private Player starter; 
 
     public Board(int number_of_players, Player[] players){
-        //picking a starting player at random
-        Random random = new Random();
-        int randomIndex = random.nextInt(players.length);
-        this.starter = players[randomIndex];
-
         this.number_of_players = number_of_players;
         this.players = players;
 

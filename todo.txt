@@ -1,2 +1,4 @@
 - Implement score calculation in round.java
 - Implement startround
+- add starter to round
+- toSTring of personacards doesn't work

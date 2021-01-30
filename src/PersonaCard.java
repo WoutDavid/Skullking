@@ -27,6 +27,11 @@ public abstract class PersonaCard extends Card {
         this.killedBy = killedBy;
     }
 
+    @Override
+    public String toString() {
+        return "PersonaCard [name=" + name + "]";
+    }
+    
     
 
 }

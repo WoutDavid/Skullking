@@ -1,20 +1,22 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Arrays;
 
 public class Rotation {
-    HashMap<Player, Card> playedCards;
+    LinkedHashMap<Player, Card> playedCards;
     String firstColor;
     Player winner = null;
     Card winning_card = null;
     boolean first = true;  
 
-    public Rotation(HashMap<Player, Card> playedCards, String firstColor){
+    public Rotation(LinkedHashMap<Player, Card> playedCards, String firstColor){
         this.playedCards=playedCards;
         this.firstColor=firstColor;
     }
 
 
     //takes as input a map of players and their played cards for this rotation, 
+    //returns a map of a player who won this rotation with the card that they did it with
     public HashMap<Player, Card> playRotation(){
         for (HashMap.Entry<Player, Card> entry : playedCards.entrySet()) {
             winner = entry.getKey();
@@ -58,8 +60,10 @@ public class Rotation {
                 }
             }
         }
-        HashMap<Player, Card> returnMap = new HashMap<Player, Card>();
+        HashMap<Player, Card> returnMap = new LinkedHashMap<Player, Card>();
         returnMap.put(winner, winning_card);
+        System.out.println(String.format("%s is the winner with the %s card",winner, winning_card.toString()));
+        winner.setWinsReceived(winner.getWinsReceived()+1);
         return returnMap;
     }
     

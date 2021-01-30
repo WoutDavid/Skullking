@@ -17,9 +17,6 @@ public class Hand {
         return number_cards;
     }
 
-    public void setNumber_cards(int number_cards) {
-        this.number_cards = number_cards;
-    }
 
     public Card[] getCards() {
         return cards;

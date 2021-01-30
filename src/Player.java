@@ -6,9 +6,8 @@ public class Player {
     private int winsReceived;
     private Card cardChosen = null;
 
-    public Player(String name, int score){
+    public Player(String name){
         this.name = name;
-        this.score = score;
     }
 
     public String getName() {
