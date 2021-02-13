@@ -63,7 +63,9 @@ public class Game {
         return scores;
     }
 
-    public void setScores(HashMap<Player, Integer> scores) {
-        this.scores = scores;
+    public void printScores(){
+        for (HashMap.Entry<Player, Integer> entry : scores.entrySet()) {
+            System.out.println(String.format("%s has %d points", entry.getKey(), entry.getValue()));
+        }   
     }
 }

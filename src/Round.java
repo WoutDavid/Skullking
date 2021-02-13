@@ -8,13 +8,12 @@ import java.util.Random;
 
 public class Round {
     private int round_number;
+    private int rotations_played;
     private Player[] players;
     private Player starter;
     private Game parentGame;
     private Deck deck = new Deck();
     private LinkedHashMap<Player, Card> playedCards = new LinkedHashMap<Player, Card>();
-    // private LinkedHashMap<Player, Integer> winsCalled = new LinkedHashMap<Player, Integer>();
-    // private LinkedHashMap<Player, Integer>  winsReceived = new LinkedHashMap<Player, Integer>();
     private boolean roundFinished = false;
 
     public Round(Player[] players, int round_number, Game game){
@@ -24,20 +23,29 @@ public class Round {
         this.starter = players[rnd];
         this.round_number = round_number;
         this.parentGame = game;
+        this.rotations_played=0;
 
         for (Player p: players){
             p.setHand(new Hand(round_number, p, deck));
-            //Ask for everyone to call their wins
-            playedCards.put(p,p.getCardChosen());
         }
     }
 
+    //boolean function to check if everyone called their wins
+    public boolean checkWins(){
+        Boolean returnBool = true;
+        for (Player p: players){
+            if (p.getWinsCalled()<0){
+                returnBool=false;
+            }
+        }
+        return returnBool;
+    }
     //Fills the playedCards with the currently chosen cards of the players
     //to be called right before initiating a rotation.
     public void collectPlayedCards() throws Exception{
         for (Player p: players){
             if (p.getCardChosen() == null){
-                throw new Exception(String.format("%s did not choose a card yet",p.getName()));
+                throw new Exception(String.format("%s did not choose a card yet %n",p.getName()));
             }
         }
         for (Player p: players){
@@ -46,29 +54,33 @@ public class Round {
     }
 
     
-    public HashMap<Player, Card> playRotation(LinkedHashMap<Player, Card> playedCards){
+    public HashMap<Player, Card> playRotation(){
         try{
             collectPlayedCards();
         } catch(Exception e) {
             System.out.println(e);
         }
-
-        String firstColor = null;
-        for (HashMap.Entry<Player, Card> entry : playedCards.entrySet()) {
-            if (entry.getValue() instanceof NumericCard){
-                firstColor = ((NumericCard)entry.getValue()).getColor();
+        Rotation rotation = new Rotation(playedCards);
+        HashMap<Player, Card> returnMap = rotation.playRotation();
+        rotations_played++;
+        if (rotations_played==round_number){
+            roundFinished=true;
+            try{
+                this.updatePlayerScores();
+            } catch(Exception e) {
+                System.out.println(e);
             }
-            else {
-                continue;
+            try{
+                this.updateGameScores();
+            }catch(Exception e) {
+                System.out.println(e);
             }
         }
-        Rotation rotation = new Rotation(playedCards, firstColor);
-        HashMap<Player, Card> returnMap = rotation.playRotation();
         return returnMap;
+
     }
 
     public HashMap<Player, Integer> updateGameScores() throws Exception{
-        //TODO implement this
         if (!isRoundFinished()){
             throw new Exception("Round is not finished");
         } else{
@@ -129,26 +141,6 @@ public class Round {
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
-
-
-	// public LinkedHashMap<Player, Integer> getWinsCalled() {
-	// 	return winsCalled;
-	// }
-
-
-	// public void setWinsCalled(LinkedHashMap<Player, Integer> winsCalled) {
-	// 	this.winsCalled = winsCalled;
-	// }
-
-
-	// public LinkedHashMap<Player, Integer> getWinsReceived() {
-	// 	return winsReceived;
-	// }
-
-
-	// public void setWinsReceived(LinkedHashMap<Player, Integer> winsReceived) {
-	// 	this.winsReceived = winsReceived;
-	// }
 
 
 	public boolean isRoundFinished() {

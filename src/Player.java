@@ -2,8 +2,8 @@ public class Player {
     private String name;
     private int score;
     private Hand hand;
-    private int winsCalled;
-    private int winsReceived;
+    private int winsCalled=-5;
+    private int winsReceived=0;
     private Card cardChosen = null;
 
     public Player(String name){
@@ -58,6 +58,14 @@ public class Player {
         this.winsReceived = winsReceived;
     }
 
+    public void printCalledWins(){
+        System.out.println(this.getName() + " called " + this.getWinsCalled() + " wins.");
+    }
+
+    @Override
+    public String toString() {
+        return "Player [name=" + name + "]";
+    }
     
     
 }

@@ -1,4 +1,4 @@
-- Implement score calculation in round.java
-- Implement startround
 - add starter to round
-- toSTring of personacards doesn't work
+- somewhere in collecting cards and playing rotation, I'll have to make sure the order of the linked player array is correct, but i'll probably do this on game functionality, where I implement "picking cards"
+- At some point you're gonna have to deal with green pirates
+- checkWins and winscalling will have to be implemented somewhere, don't really know where ye

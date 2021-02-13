@@ -5,7 +5,7 @@ public class SkullKing extends PersonaCard {
 
     public SkullKing(){
         this.name = "Skullking";
-        this.trumps=new String[]{"Pirate"};
+        this.trumps=new String[]{"Pirate", "Escape"};
         this.killedBy=new String[]{"Mermaid"};
     }
 

@@ -5,7 +5,7 @@ public class Pirate extends PersonaCard{
 
     public Pirate(){
         this.name="Pirate";
-        this.trumps = new String[]{"Mermaid"};
+        this.trumps = new String[]{"Mermaid", "Escape"};
         this.killedBy=new String[]{"Skullking"};
     }
 

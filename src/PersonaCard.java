@@ -29,7 +29,7 @@ public abstract class PersonaCard extends Card {
 
     @Override
     public String toString() {
-        return "PersonaCard [name=" + name + "]";
+        return "PersonaCard [name=" + this.getName() + "]";
     }
     
     
