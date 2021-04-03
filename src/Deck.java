@@ -1,12 +1,16 @@
 import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Deck {
-    private Card[] cards;
+    private Card[] deckCards;
     private int size;
 
     public Deck(){
-        //5 escape, 4*13=52 colours, 5 pirates, 1 skullking, 1 mermaid, 1 GreenFlag = 66
+        //5 escape, 4*13=52 colours, 5 pirates, 1 skullking, 1 mermaid, 1 GreenFlag = 65
         String[] colors = new String[]{"black", "blue", "red", "yellow"};
-        Card[] cards = new Card[66];
+        Card[] cards = new Card[65];
         int counter = 0;
         for(String s : colors) {
             for(int j=1;j<14;j++){
@@ -14,53 +18,59 @@ public class Deck {
                 counter++;
             }
         }
-        
-
-        //hier is alle kleur al geel for some reason
-        
-        for(int i = 53; i<58; i++){
+                
+        for(int i = 52; i<57; i++){
             cards[i] = new Escape();
         }
-        for(int i=58;i<63; i++){
+        for(int i=57;i<62; i++){
             cards[i] = new Pirate();
-        }
-        cards[63] = new SkullKing();
-        cards[64] = new Mermaid();
-        cards[65] = new GreenPirate();
 
-        Random rand = new Random();
-		for (int i = 0; i < cards.length; i++) {
-			int randomIndexToSwap = rand.nextInt(cards.length);
-			Card temp = cards[randomIndexToSwap];
-			cards[randomIndexToSwap] = cards[i];
-			cards[i] = temp;
         }
-        this.cards=cards;
+        cards[62] = new SkullKing();
+        cards[63] = new Mermaid();
+        cards[64] = new GreenPirate();
+
+        // Shuffle the deck:
+        List<Card> cardList = Arrays.asList(cards);
+		Collections.shuffle(cardList);
+		cardList.toArray(cards);
+        this.deckCards=cards;
         this.size = cards.length;
     }
 
     public Card[] getCards() {
-        return cards;
+        return deckCards;
     }
 
     public void setCards(Card[] cards) {
-        this.cards = cards;;
+        this.deckCards = cards;
+        this.setSize(cards.length);
     }
     public int getSize() {
-        return this.cards.length;
+        return this.deckCards.length;
     }
 
-    public void setSize(int size) {
+    private void setSize(int size) {
 		this.size = size;
 	}
     public Card drawCard(){
-        Card return_card = this.cards[0];
-        Card[] new_deck = new Card[this.getSize()-1];
-        for (int i = 0; i<new_deck.length; i++){
-            new_deck[i] = this.cards[i+1];
+        Card returnCard = this.deckCards[0];
+        Card[] newDeck = new Card[this.getSize()-1];
+        for (int i = 0; i<newDeck.length; i++){
+            newDeck[i] = this.deckCards[i+1];
         }
-        this.setCards(new_deck);
-        return return_card;
+        this.setCards(newDeck);
+        return returnCard;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Card c: this.deckCards){
+            sb.append(c.toString() + "\n");
+        }
+        sb.append(String.format("Number of cards in deck = %d", this.size));
+        return sb.toString();
     }
 }
 
