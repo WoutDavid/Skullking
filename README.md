@@ -1,14 +1,14 @@
-## Getting Started
+## Skullking
+by David Wouters
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### Introduction
+This repository contains code for my personal attempt at creating a java application that allows to play the board/cardgame "Skullking". 
+The goal is to make this a webhosted java application where multiple players can come together to play the game, each on their seperate machine.
 
-## Folder Structure
+### Getting started
+The application is not yet finished, so there is no way of running/installing anything just yet.
+You can play with the classes by cloning the repo to your local machine and creating instances of the classes by using the main function.
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+### Disclaimer: 
+This personal is for personal growth and enjoyment only. I have no intention of releasing this to be an actual game to the public or making money off of it, since I did not invent the game. It is merely an implementation.
