@@ -4,11 +4,12 @@ import java.util.Random;
 
 //This class represents one of the 10 rounds that will be played each game
 //so the card calling and score calculation is done on this level.
+
 //the deck is also created on this level, each round has a new Deck.
 
 public class Round {
-    private int round_number;
-    private int rotations_played;
+    private int roundNumber;
+    private int tricksPlayed;
     private Player[] players;
     private Player starter;
     private Game parentGame;
@@ -16,21 +17,21 @@ public class Round {
     private LinkedHashMap<Player, Card> playedCards = new LinkedHashMap<Player, Card>();
     private boolean roundFinished = false;
 
-    public Round(Player[] players, int round_number, Game game){
+    public Round(Player[] players, int roundNumber, Game game){
         //round begins, each player gets their hand
         this.players = players;
         int rnd = new Random().nextInt(players.length);
         this.starter = players[rnd];
-        this.round_number = round_number;
+        this.roundNumber = roundNumber;
         this.parentGame = game;
-        this.rotations_played=0;
-
+        this.tricksPlayed=0;
+        
         for (Player p: players){
-            p.setHand(new Hand(round_number, p, deck));
+            p.setHand(new Hand(roundNumber, deck));
         }
     }
-
-    //boolean function to check if everyone called their wins
+    // Boolean function to check if everyone called their wins
+    // Actual win calling will be done on GUI level
     public boolean checkWins(){
         Boolean returnBool = true;
         for (Player p: players){
@@ -41,7 +42,7 @@ public class Round {
         return returnBool;
     }
     //Fills the playedCards with the currently chosen cards of the players
-    //to be called right before initiating a rotation.
+    //to be called right before initiating a Trick.
     public void collectPlayedCards() throws Exception{
         for (Player p: players){
             if (p.getCardChosen() == null){
@@ -54,16 +55,16 @@ public class Round {
     }
 
     
-    public HashMap<Player, Card> playRotation(){
+    public HashMap<Player, Card> playTrick(){
         try{
             collectPlayedCards();
         } catch(Exception e) {
             System.out.println(e);
         }
-        Rotation rotation = new Rotation(playedCards);
-        HashMap<Player, Card> returnMap = rotation.playRotation();
-        rotations_played++;
-        if (rotations_played==round_number){
+        Trick Trick = new Trick(playedCards);
+        HashMap<Player, Card> returnMap = Trick.playTrick();
+        tricksPlayed++;
+        if (tricksPlayed==roundNumber){
             roundFinished=true;
             try{
                 this.updatePlayerScores();
@@ -80,12 +81,14 @@ public class Round {
 
     }
 
-    public HashMap<Player, Integer> updateGameScores() throws Exception{
+    public HashMap<Player, Integer> updateGameScores() throws Exception {
         if (!isRoundFinished()){
             throw new Exception("Round is not finished");
         } else{
             for (Player p: players){
                 this.getParentGame().addScore(p, p.getScore());
+                // After updating the game scores, flush the player scores, since they represent temp scores
+                p.setScore(0);
             }
         }
         return new HashMap<Player, Integer>();
@@ -96,16 +99,22 @@ public class Round {
         if (!isRoundFinished()){
             throw new Exception("Round is not finished, cannot update player scores");
         }
+        // Now we're going to calculate the score based on winscalled and received.
         for (Player p: players){
+            // If the player called 0 wins
             if (p.getWinsCalled()==0){
+                // And also received them:
                 if (p.getWinsReceived() == 0){
-                    p.setScore(round_number*10);
+                    p.setScore(roundNumber*10);
+                // if he got a different number:
                 } else {
-                    p.setScore(round_number*-10);
+                    p.setScore(roundNumber*-10);
                 }
+            // If the player did not call 0 wins
             } else if (p.getWinsCalled() == p.getWinsReceived()){
                 p.setScore(p.getWinsCalled()*20);
             } else {
+                // calculate the absolute difference between the two 
                 int difference = Math.abs(p.getWinsCalled()-p.getWinsReceived());
                 p.setScore(difference*-10);
             }
@@ -114,12 +123,12 @@ public class Round {
 
 
 	public int getRound_number() {
-		return round_number;
+		return roundNumber;
 	}
 
 
-	public void setRound_number(int round_number) {
-		this.round_number = round_number;
+	public void setRound_number(int roundNumber) {
+		this.roundNumber = roundNumber;
 	}
 
 

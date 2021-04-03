@@ -32,6 +32,7 @@ public class Player {
 
     public void setHand(Hand hand) {
         this.hand = hand;
+        hand.setOwner(this);
     }
 
     public Card getCardChosen() {

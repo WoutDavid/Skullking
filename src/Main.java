@@ -11,8 +11,8 @@ public class Main {
         Player[] playerArray = new Player[]{p1,p2,p3,p4};
 
         //creating board and game
-        Board board = new Board(4, playerArray);
-        Game game = new Game(playerArray);
+        Board board = new Board(playerArray);
+        Game game = board.createGame(board.getPlayers());
         
         //playing all of the rounds
         for (int i =1; i<11; i++){
@@ -25,7 +25,7 @@ public class Main {
                 for (Player p: playerArray){
                     p.setCardChosen(p.getHand().getCards()[j]);
                 }
-                HashMap<Player, Card> winner = round.playRotation();
+                HashMap<Player, Card> winner = round.playTrick();
             }
         }
 

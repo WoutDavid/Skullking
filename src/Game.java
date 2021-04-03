@@ -2,23 +2,25 @@ import java.util.HashMap;
 
 //Game will be the one instance that is created by Board, and represents an entire game, so round 1-10 will be created here, score will be kept here.
 public class Game {
-    private int number_of_players;
+    private int numberOfPlayers;
     private Player[] players;
     private int roundNumber = 1;
+    private Board parentBoard;
     boolean gameOver = false;
-    private HashMap<Player, Integer> scores = new HashMap<Player, Integer>();
+    private HashMap<Player, Integer> gameScores = new HashMap<Player, Integer>();
 
-    public Game(Player[] players){
-        this.number_of_players=players.length;
+    public Game(Player[] players, Board parentBoard){
+        this.numberOfPlayers=players.length;
         this.players=players;
+        this.parentBoard=parentBoard;
         for (Player p: players){
-            scores.put(p, 0);
+            gameScores.put(p, 0);
         }
 
     }
 
     public void addScore(Player player, int score){
-        this.scores.put(player, this.scores.get(player) + score);
+        this.gameScores.put(player, this.gameScores.get(player) + score);
     }
     //creates a new round, and the end of the round will call upon the updateScores method in the Game class to use the end 
     public Round startRound(int roundNumber){
@@ -27,12 +29,12 @@ public class Game {
         return round;
     }
 
-    public int getNumber_of_players() {
-        return number_of_players;
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
     }
 
-    public void setNumber_of_players(int number_of_players) {
-        this.number_of_players = number_of_players;
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
     }
 
     public Player[] getPlayers() {
@@ -60,12 +62,21 @@ public class Game {
     }
 
     public HashMap<Player, Integer> getScores() {
-        return scores;
+        return gameScores;
     }
 
     public void printScores(){
-        for (HashMap.Entry<Player, Integer> entry : scores.entrySet()) {
+        for (HashMap.Entry<Player, Integer> entry : gameScores.entrySet()) {
             System.out.println(String.format("%s has %d points", entry.getKey(), entry.getValue()));
         }   
     }
+
+    public Board getParentBoard() {
+        return parentBoard;
+    }
+
+    public void setParentBoard(Board parentBoard) {
+        this.parentBoard = parentBoard;
+    }
+    
 }

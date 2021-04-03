@@ -2,21 +2,21 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Arrays;
 
-public class Rotation {
+public class Trick {
     LinkedHashMap<Player, Card> playedCards;
     String firstColor=null;
     Player winner = null;
     Card winning_card = null;
     boolean first = true;  
 
-    public Rotation(LinkedHashMap<Player, Card> playedCards){
+    public Trick(LinkedHashMap<Player, Card> playedCards){
         this.playedCards=playedCards;
     }
 
 
-    //takes as input a map of players and their played cards for this rotation, 
-    //returns a map of a player who won this rotation with the card that they did it with
-    public HashMap<Player, Card> playRotation(){
+    //takes as input a map of players and their played cards for this trick, 
+    //returns a map of a player who won this trick with the card that they did it with
+    public HashMap<Player, Card> playTrick(){
         //This forloop is for debugging purposes
         for (HashMap.Entry<Player, Card> entry : playedCards.entrySet()) {
             Player player = entry.getKey();
