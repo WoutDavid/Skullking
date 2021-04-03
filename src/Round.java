@@ -61,9 +61,16 @@ public class Round {
         } catch(Exception e) {
             System.out.println(e);
         }
+        // Create Trick object
         Trick Trick = new Trick(playedCards);
+
+        //Define the winner using the playTrick method
         Player trickWinner = Trick.playTrick();
+        //Give update winsreceived of the winner
+        trickWinner.oneWinReceived();
+        // Update tricks played counter
         tricksPlayed++;
+
         if (tricksPlayed==roundNumber){
             roundFinished=true;
             try{
@@ -94,7 +101,7 @@ public class Round {
         return new HashMap<Player, Integer>();
 
     }
-
+    // Updates the players scores based on their current values of winscalled and winsreceived, and then puts those values to zero
     public void updatePlayerScores() throws Exception{
         if (!isRoundFinished()){
             throw new Exception("Round is not finished, cannot update player scores");
@@ -118,9 +125,11 @@ public class Round {
                 int difference = Math.abs(p.getWinsCalled()-p.getWinsReceived());
                 p.setScore(difference*-10);
             }
+            // Reset their wins stats
+            p.setWinsCalled(-5);
+            p.setWinsReceived(0);
         }
     }
-
 
 	public int getRound_number() {
 		return roundNumber;

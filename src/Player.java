@@ -58,6 +58,10 @@ public class Player {
     public void setWinsReceived(int winsReceived) {
         this.winsReceived = winsReceived;
     }
+    // Updates the player's win count with exactly one
+    public void oneWinReceived(){
+        winsReceived++;
+    }
 
     public void printCalledWins(){
         System.out.println(this.getName() + " called " + this.getWinsCalled() + " wins.");
