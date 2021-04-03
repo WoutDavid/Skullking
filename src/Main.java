@@ -25,7 +25,7 @@ public class Main {
                 for (Player p: playerArray){
                     p.setCardChosen(p.getHand().getCards()[j]);
                 }
-                HashMap<Player, Card> winner = round.playTrick();
+                Player winner = round.playTrick();
             }
         }
 

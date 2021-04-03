@@ -55,14 +55,14 @@ public class Round {
     }
 
     
-    public HashMap<Player, Card> playTrick(){
+    public Player playTrick(){
         try{
             collectPlayedCards();
         } catch(Exception e) {
             System.out.println(e);
         }
         Trick Trick = new Trick(playedCards);
-        HashMap<Player, Card> returnMap = Trick.playTrick();
+        Player trickWinner = Trick.playTrick();
         tricksPlayed++;
         if (tricksPlayed==roundNumber){
             roundFinished=true;
@@ -77,7 +77,7 @@ public class Round {
                 System.out.println(e);
             }
         }
-        return returnMap;
+        return trickWinner;
 
     }
 
