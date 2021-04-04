@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Random;
-
+import GameClasses.*;
 public class Main {
     public static void main(String[] args){
         //creating the players
@@ -10,7 +10,7 @@ public class Main {
         Player p4 = new Player("Kathleen");
         Player[] playerArray = new Player[]{p1,p2,p3,p4};
 
-        //creating board and game
+        // Creating board and game
         Board board = new Board(playerArray);
         Game game = board.createGame(board.getPlayers());
         

@@ -1,7 +1,9 @@
+package GameClasses;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Arrays;
-
+import CardTypes.*;
 public class Trick {
     private LinkedHashMap<Player, Card> playedCards;
     private String firstColor=null;

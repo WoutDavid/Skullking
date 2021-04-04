@@ -1,4 +1,7 @@
+package GameClasses;
 import java.util.HashMap;
+
+
 //board is the place where the gui will draw it's info from, multiple games can be played on one instance of a board
 public class Board {
     private int numberOfPlayers;

@@ -1,7 +1,9 @@
+package GameClasses;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Random;
-
+import CardTypes.*;
 //This class represents one of the 10 rounds that will be played each game
 //so the card calling and score calculation is done on this level.
 
@@ -54,7 +56,7 @@ public class Round {
         }
     }
 
-    
+    // Simulates the playing of a trick using the currently selected chosen card of each player, then returns the winner
     public Player playTrick(){
         try{
             collectPlayedCards();
@@ -68,6 +70,8 @@ public class Round {
         Player trickWinner = Trick.playTrick();
         //Give update winsreceived of the winner
         trickWinner.oneWinReceived();
+        // The winner is also starter in the next trick, should there be one
+        starter = trickWinner;
         // Update tricks played counter
         tricksPlayed++;
 
@@ -85,7 +89,6 @@ public class Round {
             }
         }
         return trickWinner;
-
     }
 
     public HashMap<Player, Integer> updateGameScores() throws Exception {

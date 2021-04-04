@@ -1,12 +1,14 @@
-public class SkullKing extends PersonaCard {
+package CardTypes;
+
+public class Pirate extends PersonaCard{
     private String name;
     private String[] trumps;
     private String[] killedBy;
 
-    public SkullKing(){
-        this.name = "Skullking";
-        this.trumps=new String[]{"Pirate", "Escape"};
-        this.killedBy=new String[]{"Mermaid"};
+    public Pirate(){
+        this.name="Pirate";
+        this.trumps = new String[]{"Mermaid", "Escape"};
+        this.killedBy=new String[]{"Skullking"};
     }
 
     public String getName() {
@@ -33,6 +35,5 @@ public class SkullKing extends PersonaCard {
         this.killedBy = killedBy;
     }
 
-    
     
 }

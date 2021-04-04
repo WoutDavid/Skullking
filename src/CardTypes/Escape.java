@@ -1,3 +1,5 @@
+package CardTypes;
+
 public class Escape extends PersonaCard{
     private String name;
     private String[] killedBy;

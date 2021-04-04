@@ -1,3 +1,5 @@
+package CardTypes;
+
 public class GreenPirate extends PersonaCard {
     private String name;
 

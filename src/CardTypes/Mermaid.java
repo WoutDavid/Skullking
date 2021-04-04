@@ -1,3 +1,5 @@
+package CardTypes;
+
 public class Mermaid extends PersonaCard{
     private String name;
     private String[] trumps;

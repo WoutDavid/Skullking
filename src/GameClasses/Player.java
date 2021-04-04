@@ -1,3 +1,7 @@
+package GameClasses;
+
+import CardTypes.Card;
+
 public class Player {
     private String name;
     private int score;

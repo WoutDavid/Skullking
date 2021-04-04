@@ -1,3 +1,6 @@
+package GameClasses;
+
+import CardTypes.Card;
 public class Hand {
     private int numberCards;
     private Card[] cards;

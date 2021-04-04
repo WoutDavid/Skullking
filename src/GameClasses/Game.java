@@ -1,3 +1,4 @@
+package GameClasses;
 import java.util.HashMap;
 
 //Game will be the one instance that is created by Board, and represents an entire game, so round 1-10 will be created here, score will be kept here.

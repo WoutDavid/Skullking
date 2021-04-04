@@ -1,8 +1,9 @@
+package GameClasses;
 import java.util.Random;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+import CardTypes.*;
 public class Deck {
     private Card[] deckCards;
     private int size;

@@ -1,3 +1,5 @@
+package CardTypes;
+
 public class NumericCard extends Card{
     private String name = "number";
     private int number;
