@@ -11,7 +11,10 @@ public class Main {
         Player[] playerArray = new Player[]{p1,p2,p3,p4};
 
         // Creating board and game
-        Board board = new Board(playerArray);
+        Board board = new Board();
+        for (Player p : playerArray) {
+            board.addPlayer(p);
+        }
         Game game = board.createGame(board.getPlayers());
         
         //playing all of the rounds
